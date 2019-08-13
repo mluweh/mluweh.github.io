@@ -1,129 +1,267 @@
 <!DOCTYPE html>
-  <html ng-app="profile">
+<html lang="en">
+
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Github Profile Viewer</title>
-    <link rel="stylesheet" href="css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="http://mrmrs.io/gradients/css/gradients.min.css" type="text/css" media="screen" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WARUNG WARTEG</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
   </head>
-  <body ng-cloak ui-view class="sans-serif" style="background-color: #fbfbfb">
-    <div id="w">
-      <div class="tc pvm bg-light-gray">
-        <form name="githubSearch" ng-submit="goUsername(username)">
-          <input type="text" id="ghusername" autofocus ng-model="username" placeholder="Github username..." class="mrm f5 phm pvs br2 ba b--white">
-          <button id="ghsubmitbtn" ng-model="username" class="input-reset f5 bg-white bw0 br2 dark-gray pvs phm ban dim">Go</button>
-        <div id="ghapidata"></div>
-      </div>
-      <div ng-hide="loaded" class="bg-light-gray pvxxl phm phl-m phxl-l bt b--white-75">
-        <p class="black-80 fw4 f4 f2-ns lh-copy mvn">
-          A mobile friendly, fully responsive GitHub profile.<br>
-        </p>
-        <p class="black-80 f4 center lh-copy">
-          Want a feature? <a href="https://github.com/mrmrs/profile/issues" class="link black-80 fw7 dim">Let us know :)</a>
-        </p>
-      </div>
-      <div ng-show="userNotFound">
-        <h2>Sorry we couldn't find that user. Please try searching again.</h2>
-        <p>Try searching again</p>
-      </div>
-      <div ng-show="loaded">
-        <div class="pvl">
-          <div class="tc">
-            <a href="{{ user.html_url }}" target="_blank" class="link dim"> <img src="{{ user.avatar_url }}" width="96" height="96" alt="{{ user.login }}" class="br-100"></a>
-          </div>
-          <div class="tc">
-            <h2 class="mvn tc">
-              <span class="dib"><a href="{{user.html_url}}" target="_blank" class="f2 link dim dark-gray">{{user.login}}</a></span>
-            </h2>
-          </div>
-          <p class="tc mtn mid-gray f6">{{user.name}}</p>
-          <div>
-            <p class="tc mbn dn"><span class="">{{ user.public_repos }}</span> public repos</p>
-            <p class="tc mvn mid-gray"><span class="gray f6">{{ user.location }}</span></p>
-          </div>
-        </div>
-        <div>
-          <p ng-hide="repos">No repos!</p>
-          <div ng-show="repos">
-            <article ng-repeat="repo in repos" class="">
-              <a class="db f3 f2-ns b link dim dark-gray pam phl-m phxl-l mw10 center" href="{{repo.html_url}}" target="_blank">
-                {{repo.name}}
-                <span class="db f5 fw4 mvn lh-copy measure">{{repo.description}}</span>
-                <span class="f6 fw4">{{repo.stargazers_count}} stars</span>
-              </a>
-            </article>
-          </div>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">WARUNG WARTEG</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Barang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Find Us</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    <footer class="pvxl phm phl-m phxl-l bt b--light-gray mtxl">
-      <a href="http://tachyons.io" class="f6 link dim dark-gray db">Built with <b>Tachyons</b></a>
-      <p class="lh-copy measure">
-        This project is opensource and needs lots of love. If you're interested in contributing in anyway: opening issues, writing docs, or even building new features, check out the project on <a href="http://github.com/mrmrs/profile" class="link dim black b">GitHub</a>.
-      </p>
-    </footer>
+    </nav>
 
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Your Favorite Tegal Food was Here</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5" ><mark>Kami tidak hanya menyediakan barang mentah tetapi juga makanan siap saji yang sesuai dengan kantong mahasiswa, ingin tahu lebih lanjut...?</mark>	</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+          </div>
+        </div>`
+      </div>
+    </header>
 
-    <script>
-    angular.module('profile', ['ui.router']).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-        $stateProvider
-        .state('index', {url: '', controller: 'github'})
-        .state('user', {
-          url: "/:user",
-          controller: 'github'
-        })
-      }])
-      angular.module('profile').controller('github', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
-        $scope.goUsername = function (name) {
-          $state.transitionTo('user', {user: name})
-        }
-        $scope.getGitInfo = function () {
-          $scope.userNotFound = false;
-          $scope.loaded = false;
-          $http.get("https://api.github.com/users/" + $scope.user)
-          .success(function (data) {
-            if (data.name == "") data.name = data.login;
-            $scope.user = data;
-            $scope.loaded = true;
-          })
-          .error(function () {
-            $scope.userNotFound = true;
-          });
-          $scope.repos = [];
-          addRepos = function(url) {
-            $http.get(url).success(function (data, status, headers) {
-              $scope.repos = $scope.repos.concat(data);
-              console.log(data)
-              var nextUrl;
-              if ((headers().link)) {
-                nextUrl = headers().link.match(/<([^\>]*)>; rel\=\"next\"/);
-              }
-              if (nextUrl) {
-                addRepos(nextUrl[1]);
-              }
-            });
-          };
-          addRepos("https://api.github.com/users/" + $scope.user + "/repos");
-        }
-        if ($stateParams.user) {
-          console.log($stateParams.user)
-          $scope.user = angular.copy($stateParams.user);
-          $scope.getGitInfo();
-        }
-      }
-      ])
-    </script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-52095955-1', 'auto');
-      ga('send', 'pageview');
-    </script>
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Anda lapar dan ingin menikmati ramesan seperti biasa ?</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">Gunakanlah WarungWarteg, untuk mengetahui info makanan kesukaan anda dan harga yang dapat anda sesuaikan dengan saku anda</p>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Mulai</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Layanan Kami</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Bahan Pilihan</h3>
+              <p class="text-muted mb-0">Bahan dari sayur dan daging segar.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Terjangkau</h3>
+              <p class="text-muted mb-0">Kami berada dimana-mana dan mudah anda jangkau.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Up to Date</h3>
+              <p class="text-muted mb-0">Cobalah memeriksa dan mencari tahu yang baru disini.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Made with Love</h3>
+              <p class="text-muted mb-0">Kami yakin dengan cinta makan akan bahagia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="portfolio">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Ayam Goreng
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Orak-arik Buncis
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Mie Goreng
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Ca Kangkung
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Telur Dadar
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                   Tempe Orek
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ 
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Ayo Ngrames</h2>
+            <hr class="my-4">
+            <p class="mb-5">Belilah masakan lokal yang bermutu dan sehat, selain hemat anda juga memajukan perekonomian mikro dan membudayakan masakan khas daerah.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center">
+            <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+            <p>085-666-555-565</p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+            <p>
+              <a href="mailto:your-email@your-domain.com">warung@warteg.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
   </body>
+
 </html>
